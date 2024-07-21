@@ -5,12 +5,7 @@ import logging
 import pandas as pd
 from src.utils import get_data
 from src.config import file_path
-
-
-def reader_transaction_excel(file_path) -> pd.DataFrame:
-    """Функция принимает на вход путь до файла и возвращает датафрейм"""
-    df_transactions = pd.read_excel(file_path)
-    return df_transactions
+from src.utils import reader_transaction_excel
 
 
 

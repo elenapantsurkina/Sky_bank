@@ -2,6 +2,7 @@ import json
 import logging
 import re
 
+from src.utils import get_dict_transaction
 
 def get_transactions_fizlicam(dict_transaction: list[dict], pattern):
     """Функция возвращает JSON со всеми транзакциями, которые относятся к переводам физлицам"""
