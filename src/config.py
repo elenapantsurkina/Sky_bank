@@ -1,1 +1,1 @@
-file_path="..\\data\\operations.xlsx"
+file_path="\\data\\operations.xlsx"

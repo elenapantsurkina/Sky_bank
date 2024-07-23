@@ -3,12 +3,15 @@ import datetime
 import logging
 import pandas as pd
 from src.config import file_path
+from pathlib import Path
+
+ROOT_PATH = Path(__file__).resolve().parent.parent
 
 
 def get_data(data: str) -> datetime.datetime:
     """Функция преобразования даты"""
 
-    data_obj = datetime.datetime.strptime(data, "%d-%m-%Y %H:%M:%S")
+    data_obj = datetime.datetime.strptime(data, "%d.%m.%Y %H:%M:%S")
     return data_obj
 
 
@@ -28,5 +31,5 @@ def get_dict_transaction(file_path) -> list[dict]:
     return dict_transaction
 
 if __name__ == "__main__":
-    dict_transaction = get_dict_transaction("..\\data\\operations.xlsx")
+    dict_transaction = get_dict_transaction(str(ROOT_PATH) + file_path)
     print(dict_transaction)

@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="написаны функции по п. отчеты по категориям. поиск по ФЛ. форматирование даты">
+    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="написана функция тор 5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/reports.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
@@ -42,6 +44,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.reports.executor&quot;: &quot;Run&quot;,
     &quot;Python.services.executor&quot;: &quot;Run&quot;,
     &quot;Python.utils.executor&quot;: &quot;Run&quot;,
@@ -151,8 +154,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.views" />
-        <item itemvalue="Python.services" />
         <item itemvalue="Python.reports" />
+        <item itemvalue="Python.services" />
         <item itemvalue="Python.utils" />
       </list>
     </recent_temporary>
@@ -213,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721544290812</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="написана функция тор 5">
+      <option name="closed" value="true" />
+      <created>1721555713523</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721555713523</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -230,6 +241,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="создана структура проекта" />
     <MESSAGE value="написаны функции по п. отчеты по категориям. поиск по ФЛ. форматирование даты" />
-    <option name="LAST_COMMIT_MESSAGE" value="написаны функции по п. отчеты по категориям. поиск по ФЛ. форматирование даты" />
+    <MESSAGE value="написана функция тор 5" />
+    <option name="LAST_COMMIT_MESSAGE" value="написана функция тор 5" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/reports.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
