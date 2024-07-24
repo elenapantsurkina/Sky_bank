@@ -18,6 +18,7 @@ def get_data(data: str) -> datetime.datetime:
 def reader_transaction_excel(file_path) -> pd.DataFrame:
     """Функция принимает на вход путь до файла и возвращает датафрейм"""
     df_transactions = pd.read_excel(file_path)
+    print(df_transactions)
     return df_transactions
 
 
