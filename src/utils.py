@@ -1,9 +1,11 @@
-import json
 import datetime
+import json
 import logging
-import pandas as pd
-from src.config import file_path
 from pathlib import Path
+
+import pandas as pd
+
+from src.config import file_path
 
 ROOT_PATH = Path(__file__).resolve().parent.parent
 
