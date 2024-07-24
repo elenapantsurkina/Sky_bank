@@ -12,7 +12,6 @@ from pathlib import Path
 ROOT_PATH = Path(__file__).resolve().parent.parent
 
 
-
 def main(df_transactions, date, user_currencies, user_stocks):
     "Главная функция, делающая вывод на главную страницу"
     greeting = get_greeting()
@@ -22,7 +21,8 @@ def main(df_transactions, date, user_currencies, user_stocks):
     currency_rates = get_currency_rates(user_currencies)
     stock_prices = get_stock_price(user_stocks)
 
-    date_json = json.dumps({
+    date_json = json.dumps(
+        {
             "greeting": greeting,
             "cards": cards,
             "top_transactions": top_transaction,
@@ -34,11 +34,12 @@ def main(df_transactions, date, user_currencies, user_stocks):
     )
     return date_json
 
-if __name__ == "__main__":
-    date_json = main(df_transactions, date, user_currencies, user_stocks)
-    df_transactions = reader_transaction_excel(str(ROOT_PATH) + file_path)
-    date = "29.07.2019 22:06:27"
-    user_currencies = "USD", "EUR"
-    user_stocks = "AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"
 
-    print(date_json)
+# if __name__ == "__main__":
+#     date_json = main(df_transactions, date, user_currencies, user_stocks)
+#     df_transactions = reader_transaction_excel(str(ROOT_PATH) + file_path)
+#     date = "29.07.2019 22:06:27"
+#     user_currencies = "USD", "EUR"
+#     user_stocks = "AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"
+#
+#     print(date_json)

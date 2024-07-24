@@ -25,7 +25,7 @@ def get_greeting():
 
 
 def top_transaction(df_transactions):
-    """Функция вывода топ 5 транзакций по сумме платежа """
+    """Функция вывода топ 5 транзакций по сумме платежа"""
     top_transaction = df_transactions.sort_values(by="Сумма платежа", ascending=True).iloc[:5]
     result_top_transaction = top_transaction.to_dict(orient="records")
     top_transaction_list = []
@@ -75,13 +75,15 @@ def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFra
     start_data = fin_data.replace(day=1)
     fin_data = fin_data.replace(hour=0, minute=0, second=0, microsecond=0) + dt.timedelta(days=1)
     transaction_currency = df_transactions.loc[
-                                   (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) <= fin_data)
-                                   & (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) >= start_data)]
+        (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) <= fin_data)
+        & (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) >= start_data)
+    ]
 
     return transaction_currency
 
 
 if __name__ == "__main__":
-    transaction_currency = transaction_currency(reader_transaction_excel((str(ROOT_PATH) + file_path)),
-                                                "29.07.2019 22:06:27")
+    transaction_currency = transaction_currency(
+        reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
+    )
     print(transaction_currency)
