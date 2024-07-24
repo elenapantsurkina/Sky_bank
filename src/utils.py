@@ -15,12 +15,10 @@ def get_data(data: str) -> datetime.datetime:
     return data_obj
 
 
-
 def reader_transaction_excel(file_path) -> pd.DataFrame:
     """Функция принимает на вход путь до файла и возвращает датафрейм"""
     df_transactions = pd.read_excel(file_path)
     return df_transactions
-
 
 
 def get_dict_transaction(file_path) -> list[dict]:
@@ -29,6 +27,7 @@ def get_dict_transaction(file_path) -> list[dict]:
     dict_transaction = df.to_dict(orient="records")
 
     return dict_transaction
+
 
 if __name__ == "__main__":
     dict_transaction = get_dict_transaction(str(ROOT_PATH) + file_path)

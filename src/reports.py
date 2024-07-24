@@ -12,9 +12,7 @@ import numpy as np
 ROOT_PATH = Path(__file__).resolve().parent.parent
 
 
-def spending_by_category(df_transactions: pd.DataFrame,
-                         category: str,
-                         date: [str] = None) -> pd.DataFrame:
+def spending_by_category(df_transactions: pd.DataFrame, category: str, date: [str] = None) -> pd.DataFrame:
     """Функция возвращает траты по заданной категории за последние три месяца (от переданной даты)"""
     if date is None:
         fin_data = dt.datetime.now()
@@ -22,15 +20,19 @@ def spending_by_category(df_transactions: pd.DataFrame,
         fin_data = get_data(date)
     start_data = fin_data.replace(hour=0, minute=0, second=0, microsecond=0) - datetime.timedelta(days=91)
 
-    df_temp = df_transactions.loc[df_transactions["Категория"] == category] # временный датафрейм с отбором по категории
+    df_temp = df_transactions.loc[
+        df_transactions["Категория"] == category
+    ]  # временный датафрейм с отбором по категории
     column = 0  # это номер колонки с датой транзакции
     for row in range(0, df_temp.shape[0]):
         c = df_temp.iloc[row, column]
         dat = get_data(c)  # получаем дату из колонкм
         if not ((dat <= fin_data) and (dat >= start_data)):
-            df_temp.iloc[row, column] = np.nan      # если дата не в интервале, то заменяем ее на пустое значение
+            df_temp.iloc[row, column] = np.nan  # если дата не в интервале, то заменяем ее на пустое значение
 
-    col = np.array(["Дата операции"])  # задаём колонку в виде массива NumPy, если в ней NaN, то удалим далее все строки
+    col = np.array(
+        ["Дата операции"]
+    )  # задаём колонку в виде массива NumPy, если в ней NaN, то удалим далее все строки
     df_transactions_by_category = df_temp.dropna(axis=0, subset=col)  # удаляем лишние строки
     return df_transactions_by_category
 
@@ -38,7 +40,7 @@ def spending_by_category(df_transactions: pd.DataFrame,
 def get_transaction_dict(df_transactions_by_category: pd.DataFrame) -> list[dict]:
     """Функция принимает на вход датафрейм и возвращает словарь формата json"""
 
-    rows_count = df_transactions_by_category.shape[0] # Получение количества строк в DataFrame
+    rows_count = df_transactions_by_category.shape[0]  # Получение количества строк в DataFrame
     column_names = df_transactions_by_category.columns.tolist()
     transactions_by_category_dict = list()
     for row in range(0, rows_count):
@@ -55,8 +57,7 @@ def get_transaction_dict(df_transactions_by_category: pd.DataFrame) -> list[dict
 
 
 if __name__ == "__main__":
-    sp = spending_by_category(reader_transaction_excel(str(ROOT_PATH) + file_path),
-                        "Аптеки", "26.07.2019 20:58:55")
+    sp = spending_by_category(reader_transaction_excel(str(ROOT_PATH) + file_path), "Аптеки", "26.07.2019 20:58:55")
     print(sp)
 
     tran_dict = get_transaction_dict(sp)

@@ -14,12 +14,13 @@ def get_transactions_fizlicam(dict_transaction: list[dict], pattern):
 
         if "Описание" in trans and re.match(pattern, trans["Описание"]):
             list_transactions_fl.append(trans)
-            list_transactions_fl_json = json.dumps(list_transactions_fl,ensure_ascii=False)
+            list_transactions_fl_json = json.dumps(list_transactions_fl, ensure_ascii=False)
     return list_transactions_fl_json
 
 
 if __name__ == "__main__":
-    list_transactions_fl_json = get_transactions_fizlicam(get_dict_transaction("..\\data\\operations.xlsx"),
-                                                          pattern=r"\b[А-Я][а-я]+\s[А-Я]\.")
+    list_transactions_fl_json = get_transactions_fizlicam(
+        get_dict_transaction("..\\data\\operations.xlsx"), pattern=r"\b[А-Я][а-я]+\s[А-Я]\."
+    )
 
     print(list_transactions_fl_json)

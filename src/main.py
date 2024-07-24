@@ -3,10 +3,12 @@ import datetime
 import logging
 import pandas as pd
 import re
+from src.utils import get_greeting,
+from src.api import get_stock_price, get_currency_rates
+from
 
-list = ["Елена А.", "машина", "123 кот."]
 
-pattern = r"\b[А-Я][а-я]+\s[А-Я]\."
-t = [word for word in list if re.match(pattern, word)]
-
-print(t)
+def main(df_transactions, user_currencies, user_stocks):
+    "Главная функция, делающая вывод на главную страницу"
+    greeting = get_greeting()
+    transactions = get_

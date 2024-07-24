@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="написана функция тор 5">
+    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="скорректирован модуль reperts&#10;в модуле views написана функция расходов по картам">
+      <change afterPath="$PROJECT_DIR$/src/api.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user_setting.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/reports.py" afterDir="false" />
@@ -44,6 +49,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Python.api.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.reports.executor&quot;: &quot;Run&quot;,
     &quot;Python.services.executor&quot;: &quot;Run&quot;,
@@ -62,7 +68,29 @@
       <recent name="C:\Users\User\Desktop\pythonProjecе1\Sky_bank\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.views">
+  <component name="RunManager">
+    <configuration name="api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Sky_bank" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/api.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="reports" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sky_bank" />
       <option name="ENV_FILES" value="" />
@@ -153,6 +181,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.api" />
         <item itemvalue="Python.views" />
         <item itemvalue="Python.reports" />
         <item itemvalue="Python.services" />
@@ -224,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721555713523</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="скорректирован модуль reperts&#10;в модуле views написана функция расходов по картам">
+      <option name="closed" value="true" />
+      <created>1721743554269</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1721743554269</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,14 +279,15 @@
     <MESSAGE value="создана структура проекта" />
     <MESSAGE value="написаны функции по п. отчеты по категориям. поиск по ФЛ. форматирование даты" />
     <MESSAGE value="написана функция тор 5" />
-    <option name="LAST_COMMIT_MESSAGE" value="написана функция тор 5" />
+    <MESSAGE value="скорректирован модуль reperts&#10;в модуле views написана функция расходов по картам" />
+    <option name="LAST_COMMIT_MESSAGE" value="скорректирован модуль reperts&#10;в модуле views написана функция расходов по картам" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/reports.py</url>
-          <line>56</line>
+          <line>58</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
