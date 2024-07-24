@@ -35,9 +35,10 @@ def main(df_transactions, date, user_currencies, user_stocks):
     return date_json
 
 if __name__ == "__main__":
+    date_json = main(df_transactions, date, user_currencies, user_stocks)
     df_transactions = reader_transaction_excel(str(ROOT_PATH) + file_path)
     date = "29.07.2019 22:06:27"
     user_currencies = "USD", "EUR"
     user_stocks = "AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"
-    date_json = main(df_transactions, date, user_currencies, user_stocks)
+
     print(date_json)

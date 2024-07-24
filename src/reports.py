@@ -53,12 +53,13 @@ def get_transaction_dict(df_transactions_by_category: pd.DataFrame) -> list[dict
                 val = int(val)
             row_dict[column_names[column]] = val
         transactions_by_category_dict.append(row_dict)
-    return transactions_by_category_dict
+        transactions_by_category_json = json.dumps(transactions_by_category_dict, ensure_ascii=False)
+    return transactions_by_category_json
 
 
 if __name__ == "__main__":
     sp = spending_by_category(reader_transaction_excel(str(ROOT_PATH) + file_path), "Аптеки", "26.07.2019 20:58:55")
     print(sp)
 
-    tran_dict = get_transaction_dict(sp)
-    print(tran_dict)
+    transactions_by_category_json = get_transaction_dict(sp)
+    print(transactions_by_category_json)
