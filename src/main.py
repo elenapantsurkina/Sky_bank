@@ -19,7 +19,7 @@ def main(df_transactions, date, user_currencies, user_stocks):
     greeting = get_greeting()
     transactions = transaction_currency(df_transactions, date)
     cards = get_expenses_cards(df_transactions)
-    top_transaction = top_transaction(df_transactions)
+    top_trans = top_transaction(df_transactions)
     currency_rates = get_currency_rates(user_currencies)
     stock_prices = get_stock_price(user_stocks)
 
@@ -27,7 +27,7 @@ def main(df_transactions, date, user_currencies, user_stocks):
         {
             "greeting": greeting,
             "cards": cards,
-            "top_transactions": top_transaction,
+            "top_transactions": top_trans,
             "currency_rates": currency_rates,
             "stock_prices": stock_prices,
         },
@@ -38,10 +38,10 @@ def main(df_transactions, date, user_currencies, user_stocks):
 
 
 if __name__ == "__main__":
-    date_json = main(df_transactions, date, user_currencies, user_stocks)
     df_transactions = reader_transaction_excel(str(ROOT_PATH) + file_path)
     date = "29.07.2019 22:06:27"
     user_currencies = "USD", "EUR"
     user_stocks = "AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"
+    date_json = main(df_transactions, date, user_currencies, user_stocks)
 
     print(date_json)
