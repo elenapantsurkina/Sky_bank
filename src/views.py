@@ -3,15 +3,11 @@ import json
 import logging
 import re
 from pathlib import Path
-
 import pandas as pd
-
 from src.config import file_path
 from src.utils import get_data, reader_transaction_excel
 
 ROOT_PATH = Path(__file__).resolve().parent.parent
-
- #Настрой ка логеров
 
 
 logger = logging.getLogger("logs")
@@ -88,21 +84,9 @@ if __name__ == "__main__":
     result_expenses_cards = get_expenses_cards(reader_transaction_excel(str(ROOT_PATH) + file_path))
     print(result_expenses_cards)
 
-# logging.basicConfig(
-#     filename="..\\logs\\transaction_curency.log", encoding="utf-8",
-#     level=logging.INFO,
-#     format='%(asctime)s - %(levelname)s - %(message)s',
-#     datefmt='%Y-%m-%d %H:%M:%S'
-# )
-# logger = logging.getLogger("logs")
-# logger.setLevel(logging.INFO)
-# file_handler = logging.FileHandler("..\\logs\\transaction_currency.log", encoding="utf-8")
-# file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
-# file_handler.setFormatter(file_formatter)
-# logger.addHandler(file_handler)
-
 
 def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFrame:
+    """Функция, формирующая расходы в заданном интервале"""
     logger.info(f"Вызвана функция transaction_currency с аргументами: df_transactions={df_transactions}, data={data}")
 
     fin_data = get_data(data)
