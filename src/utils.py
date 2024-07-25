@@ -7,49 +7,53 @@ from src.config import file_path
 
 ROOT_PATH = Path(__file__).resolve().parent.parent
 
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger("logs")
+logger.setLevel(logging.INFO)
+file_handler = logging.FileHandler("..\\logs\\utils.log", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
 
 
 def get_data(data: str) -> datetime.datetime:
     """Функция преобразования даты"""
-    logging.info(f"Получена строка даты: {data}")
+    logger.info(f"Получена строка даты: {data}")
     try:
         data_obj = datetime.datetime.strptime(data, "%d.%m.%Y %H:%M:%S")
-        logging.info(f"Преобразована в объект datetime: {data_obj}")
+        logger.info(f"Преобразована в объект datetime: {data_obj}")
         return data_obj
     except ValueError as e:
-        logging.error(f"Ошибка преобразования даты: {e}")
+        logger.error(f"Ошибка преобразования даты: {e}")
         raise e
 
 
 def reader_transaction_excel(file_path) -> pd.DataFrame:
     """Функция принимает на вход путь до файла и возвращает датафрейм"""
-    logging.info(f"Вызвана функция получения транзакций из файла {file_path}")
+    logger.info(f"Вызвана функция получения транзакций из файла {file_path}")
     try:
         df_transactions = pd.read_excel(file_path)
-        logging.info(f"Файл {file_path} найден, данные о транзакциях получены")
+        logger.info(f"Файл {file_path} найден, данные о транзакциях получены")
 
         return df_transactions
     except FileNotFoundError:
-        logging.info(f"Файл {file_path} не найден")
+        logger.info(f"Файл {file_path} не найден")
         raise
 
 
 def get_dict_transaction(file_path) -> list[dict]:
     """Функция преобразовывающая датафрейм в словарь pyhton"""
-    logging.info(f"Вызвана функция get_dict_transaction с файлом {file_path}")
+    logger.info(f"Вызвана функция get_dict_transaction с файлом {file_path}")
     try:
         df = pd.read_excel(file_path)
-        logging.info(f"Файл {file_path}  прочитан")
+        logger.info(f"Файл {file_path}  прочитан")
         dict_transaction = df.to_dict(orient="records")
-        logging.info(f"Датафрейм  преобразован в список словарей")
+        logger.info(f"Датафрейм  преобразован в список словарей")
         return dict_transaction
     except FileNotFoundError:
-        logging.error(f"Файл {file_path} не найден")
+        logger.error(f"Файл {file_path} не найден")
         raise
     except Exception as e:
-        logging.error(f"Произошла ошибка: {str(e)}")
+        logger.error(f"Произошла ошибка: {str(e)}")
         raise
 
 

@@ -27,12 +27,6 @@ def test_get_data_empty_input():
     with pytest.raises(ValueError):
         get_data(input_data)
 
-#
-# def test_reader_transaction_excel_success():
-#     """Проверка, что функция возвращает DataFrame при передаче существующего файла"""
-#     df = reader_transaction_excel(file_path)
-#     assert isinstance(df, pd.DataFrame)
-
 
 def test_reader_excel_file_not_found():
     """Проверка, что функция поднимает исключение при передаче несуществующего файла"""

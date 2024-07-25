@@ -3,12 +3,18 @@ import datetime as dt
 import json
 import logging
 from pathlib import Path
-
 import numpy as np
 import pandas as pd
-
 from src.config import file_path
 from src.utils import get_data, reader_transaction_excel
+
+logger = logging.getLogger("logs")
+logger.setLevel(logging.INFO)
+file_handler = logging.FileHandler("..\\logs\\reports.log", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
 
 ROOT_PATH = Path(__file__).resolve().parent.parent
 
@@ -41,8 +47,11 @@ def spending_by_category(df_transactions: pd.DataFrame, category: str, date: [st
 def get_transaction_dict(df_transactions_by_category: pd.DataFrame) -> list[dict]:
     """Функция принимает на вход датафрейм и возвращает словарь формата json"""
 
+    logger.info("Начало функции get_transaction_dict")
     rows_count = df_transactions_by_category.shape[0]  # Получение количества строк в DataFrame
+    logger.info(f"Количество строк в DataFrame: {rows_count}")
     column_names = df_transactions_by_category.columns.tolist()
+    logger.info(f"Названия колонок: {column_names}")
     transactions_by_category_dict = list()
     for row in range(0, rows_count):
         row_dict = dict()
@@ -55,6 +64,7 @@ def get_transaction_dict(df_transactions_by_category: pd.DataFrame) -> list[dict
             row_dict[column_names[column]] = val
         transactions_by_category_dict.append(row_dict)
         transactions_by_category_json = json.dumps(transactions_by_category_dict, ensure_ascii=False)
+    logger.info("Конец функции get_transaction_dict")
     return transactions_by_category_json
 
 
