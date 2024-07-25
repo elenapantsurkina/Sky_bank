@@ -38,10 +38,19 @@ def reader_transaction_excel(file_path) -> pd.DataFrame:
 
 def get_dict_transaction(file_path) -> list[dict]:
     """Функция преобразовывающая датафрейм в словарь pyhton"""
-    df = pd.read_excel(file_path)
-    dict_transaction = df.to_dict(orient="records")
-
-    return dict_transaction
+    logging.info(f"Вызвана функция get_dict_transaction с файлом {file_path}")
+    try:
+        df = pd.read_excel(file_path)
+        logging.info(f"Файл {file_path}  прочитан")
+        dict_transaction = df.to_dict(orient="records")
+        logging.info(f"Датафрейм  преобразован в список словарей")
+        return dict_transaction
+    except FileNotFoundError:
+        logging.error(f"Файл {file_path} не найден")
+        raise
+    except Exception as e:
+        logging.error(f"Произошла ошибка: {str(e)}")
+        raise
 
 
 if __name__ == "__main__":

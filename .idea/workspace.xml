@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="&#10;написан тест на функцию get_data">
+    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="&#10;написан тест на функцию get_greting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/tests_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/tests_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/tests_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/tests_views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +47,10 @@
     "Python tests.Python tests for tests_utils.test_get_data_input.executor": "Run",
     "Python tests.Python tests for tests_utils.test_reader_excel_file_not_found.executor": "Run",
     "Python tests.Python tests for tests_utils.test_reader_transaction_excel_success.executor": "Run",
+    "Python tests.Python tests for tests_views.test_get_greeting_afternoon.executor": "Run",
+    "Python tests.Python tests for tests_views.test_get_greeting_evening.executor": "Run",
+    "Python tests.Python tests for tests_views.test_get_greeting_morning.executor": "Run",
+    "Python tests.Python tests for tests_views.test_get_greeting_night.executor": "Run",
     "Python.api.executor": "Run",
     "Python.main.executor": "Run",
     "Python.reports.executor": "Run",
@@ -67,8 +70,8 @@
       <recent name="C:\Users\User\Desktop\pythonProjecе1\Sky_bank\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for tests_utils.test_reader_excel_file_not_found">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.utils">
+    <configuration name="utils" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sky_bank" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -81,7 +84,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/utils.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -90,7 +93,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_utils.test_get_data_empty_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_views.test_get_greeting_afternoon" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Sky_bank" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -101,11 +104,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_utils.test_get_data_empty_input&quot;" />
+      <option name="_new_target" value="&quot;tests_views.test_get_greeting_afternoon&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_utils.test_get_data_input" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_views.test_get_greeting_evening" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Sky_bank" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -116,11 +119,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_utils.test_get_data_input&quot;" />
+      <option name="_new_target" value="&quot;tests_views.test_get_greeting_evening&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_utils.test_reader_excel_file_not_found" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_views.test_get_greeting_morning" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Sky_bank" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,11 +134,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_utils.test_reader_excel_file_not_found&quot;" />
+      <option name="_new_target" value="&quot;tests_views.test_get_greeting_morning&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests_utils.test_reader_transaction_excel_success" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for tests_views.test_get_greeting_night" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Sky_bank" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -146,17 +149,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_utils.test_reader_transaction_excel_success&quot;" />
+      <option name="_new_target" value="&quot;tests_views.test_get_greeting_night&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for tests_utils.test_reader_excel_file_not_found" />
-        <item itemvalue="Python tests.Python tests for tests_utils.test_reader_transaction_excel_success" />
-        <item itemvalue="Python tests.Python tests for tests_utils.test_get_data_empty_input" />
-        <item itemvalue="Python tests.Python tests for tests_utils.test_get_data_input" />
-        <item itemvalue="Python.main" />
+        <item itemvalue="Python.utils" />
+        <item itemvalue="Python tests.Python tests for tests_views.test_get_greeting_night" />
+        <item itemvalue="Python tests.Python tests for tests_views.test_get_greeting_evening" />
+        <item itemvalue="Python tests.Python tests for tests_views.test_get_greeting_afternoon" />
+        <item itemvalue="Python tests.Python tests for tests_views.test_get_greeting_morning" />
       </list>
     </recent_temporary>
   </component>
@@ -280,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721872943340</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="&#10;написан тест на функцию get_greting">
+      <option name="closed" value="true" />
+      <created>1721876173935</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721876173935</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -302,7 +313,8 @@
     <MESSAGE value="написан модуль api &#10;скорректированы недочеты по всем модулям" />
     <MESSAGE value="&#10;скорректированы недочеты по всем модулям" />
     <MESSAGE value="&#10;написан тест на функцию get_data" />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;написан тест на функцию get_data" />
+    <MESSAGE value="&#10;написан тест на функцию get_greting" />
+    <option name="LAST_COMMIT_MESSAGE" value="&#10;написан тест на функцию get_greting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
