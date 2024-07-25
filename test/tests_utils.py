@@ -1,10 +1,6 @@
 import pytest
 import datetime
-
-import json
-import logging
 from pathlib import Path
-import pandas as pd
 from src.config import file_path
 from src.utils import get_data, reader_transaction_excel, get_dict_transaction
 
@@ -48,4 +44,3 @@ def test_get_dict_transaction_file_not_found():
     """Тест проверяет обработку ошибки FileNotFoundError"""
     with pytest.raises(FileNotFoundError):
         get_dict_transaction("non_existent_file.xlsx")
-
