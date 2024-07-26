@@ -60,3 +60,12 @@ def get_dict_transaction(file_path) -> list[dict]:
 if __name__ == "__main__":
     dict_transaction = get_dict_transaction(str(ROOT_PATH) + file_path)
     print(dict_transaction)
+
+
+def get_user_setting(path):
+    """Функция перевода настроек пользователя(курс и акции) из json объекта"""
+    logger.info(f"Вызвана функция с файлом {path}")
+    with open(path, "r", encoding="utf-8") as f:
+        user_setting = json.load(f)
+        logger.info(f"Получены настройки пользователя")
+    return user_setting["user_currencies"], user_setting["user_stocks"]
