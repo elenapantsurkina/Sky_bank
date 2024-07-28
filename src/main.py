@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.api import get_currency_rates
+from src.api import get_currency_rates, get_stock_price
 from src.config import file_path
 from src.utils import reader_transaction_excel, get_user_setting
 from src.views import get_expenses_cards, get_greeting, top_transaction, transaction_currency
@@ -21,7 +21,7 @@ def main(df_transactions, date, user_currencies, user_stocks):
     cards = get_expenses_cards(df_transactions)
     top_trans = top_transaction(df_transactions)
     currency_rates = get_currency_rates(user_currencies)
-    # stock_prices = get_stock_price(user_stocks)
+    stock_prices = get_stock_price(user_stocks)
 
     date_json = json.dumps(
         {
@@ -29,7 +29,7 @@ def main(df_transactions, date, user_currencies, user_stocks):
             "cards": cards,
             "top_transactions": top_trans,
             "currency_rates": currency_rates,
-            # "stock_prices": stock_prices,
+            "stock_prices": stock_prices,
         },
         indent=4,
         ensure_ascii=False,
