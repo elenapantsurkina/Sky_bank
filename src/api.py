@@ -21,7 +21,7 @@ def get_currency_rates(currencies):
 
     else:
         data = response.json()
-        quotes = data.get("well", {})
+        quotes = data.get("quotes", {})
         usd = quotes.get("USDRUB")
         eur_usd = quotes.get("USDEUR")
         eur = usd / eur_usd
@@ -34,10 +34,12 @@ def get_currency_rates(currencies):
 
 def get_stock_price(stocks):
     """Функция, возвращающая курсы акций"""
+    API_KEY_STOCK = os.environ.get("API_KEY_STOCK")
     stock_price = []
-    url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={stock}&apikey={API_KEY_STOCK}"
-    response = requests.get(url)
+
     for stock in stocks:
+        url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={stock}&apikey={API_KEY_STOCK}"
+        response = requests.get(url)
         if response.status_code != 200:
             print(f"Запрос не был успешным. Возможная причина: {response.reason}")
 
