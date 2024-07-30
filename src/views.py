@@ -1,7 +1,5 @@
 import datetime as dt
-import json
 import logging
-import re
 from pathlib import Path
 import pandas as pd
 from src.config import file_path
@@ -88,16 +86,12 @@ if __name__ == "__main__":
 def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFrame:
     """Функция, формирующая расходы в заданном интервале"""
     logger.info(f"Вызвана функция transaction_currency с аргументами: df_transactions={df_transactions}, data={data}")
-
     fin_data = get_data(data)
     logger.debug(f"Получена конечная дата: {fin_data}")
-
     start_data = fin_data.replace(day=1)
     logger.debug(f"Получена начальная дата: {start_data}")
-
     fin_data = fin_data.replace(hour=0, minute=0, second=0, microsecond=0) + dt.timedelta(days=1)
     logger.debug(f"Обновлена конечная дата: {fin_data}")
-
     transaction_currency = df_transactions.loc[
         (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) <= fin_data)
         & (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) >= start_data)
@@ -106,9 +100,9 @@ def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFra
 
     return transaction_currency
 
-
-if __name__ == "__main__":
-    transaction_currency = transaction_currency(
-        reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
-    )
-    print(transaction_currency)
+#
+# if __name__ == "__main__":
+#     transaction_currency = transaction_currency(
+#         reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
+#     )
+#     print(transaction_currency)

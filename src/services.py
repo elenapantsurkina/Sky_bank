@@ -2,8 +2,6 @@ import json
 import logging
 import re
 from src.utils import get_dict_transaction
-from functools import wraps
-from typing import Any, Callable
 
 
 logger = logging.getLogger("logs")
@@ -17,15 +15,11 @@ logger.addHandler(file_handler)
 def get_transactions_fizlicam(dict_transaction: list[dict], pattern):
     """Функция возвращает JSON со всеми транзакциями, которые относятся к переводам физлицам"""
     logger.info("Вызвана функция get_transactions_fizlicam")
-
     list_transactions_fl = []
-
     for trans in dict_transaction:
         if "Описание" in trans and re.match(pattern, trans["Описание"]):
             list_transactions_fl.append(trans)
-
     logger.info(f"Найдено {len(list_transactions_fl)} транзакций, соответствующих паттерну")
-
     if list_transactions_fl:
         list_transactions_fl_json = json.dumps(list_transactions_fl, ensure_ascii=False)
         logger.info(f"Возвращен JSON со {len(list_transactions_fl)} транзакциями")
@@ -34,35 +28,10 @@ def get_transactions_fizlicam(dict_transaction: list[dict], pattern):
         logger.info("Возвращен пустой список")
         return "[]"
 
-
-if __name__ == "__main__":
-    list_transactions_fl_json = get_transactions_fizlicam(
-        get_dict_transaction("..\\data\\operations.xlsx"), pattern=r"\b[А-Я][а-я]+\s[А-Я]\."
-    )
-
-    print(list_transactions_fl_json)
-
-
-def log(filename: Any = None) -> Callable:
-    """декоратор,который логирует вызов функции и ее результат в файл или в консоль"""
-
-    def decorator(func: Callable) -> Callable:
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            try:
-                result = func(*args, **kwargs)
-                log_messege = "my_function ok\n"
-
-            except Exception as e:
-                result = None
-                log_messege = f"my_function error: {e}. Inputs: {args}, {kwargs} \n"
-            if filename:
-                with open(filename, "a", encoding="utf-8") as file:
-                    file.write(log_messege)
-            else:
-                print(log_messege)
-            return result
-
-        return wrapper
-
-    return decorator
+#
+# if __name__ == "__main__":
+#     list_transactions_fl_json = get_transactions_fizlicam(
+#         get_dict_transaction("..\\data\\operations.xlsx"), pattern=r"\b[А-Я][а-я]+\s[А-Я]\."
+#     )
+#
+#     print(list_transactions_fl_json)

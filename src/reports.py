@@ -7,6 +7,8 @@ import numpy as np
 import pandas as pd
 from src.config import file_path
 from src.utils import get_data, reader_transaction_excel
+from functools import wraps
+from typing import Any, Callable
 
 logger = logging.getLogger("logs")
 logger.setLevel(logging.INFO)
@@ -74,3 +76,27 @@ if __name__ == "__main__":
 
     transactions_by_category_json = get_transaction_dict(sp)
     print(transactions_by_category_json)
+
+def log(filename: Any = None) -> Callable:
+    """декоратор,который логирует вызов функции и ее результат в файл или в консоль"""
+
+    def decorator(func: Callable) -> Callable:
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            try:
+                result = func(*args, **kwargs)
+                log_messege = "my_function ok\n"
+
+            except Exception as e:
+                result = None
+                log_messege = f"my_function error: {e}. Inputs: {args}, {kwargs} \n"
+            if filename:
+                with open(filename, "a", encoding="utf-8") as file:
+                    file.write(log_messege)
+            else:
+                print(log_messege)
+            return result
+
+        return wrapper
+
+    return decorator

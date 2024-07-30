@@ -46,10 +46,8 @@ class TestReaderTransactionExcel(unittest.TestCase):
         mock_df = pd.DataFrame({'transaction_id': [1, 2, 3]})
         mock_read_excel.return_value = mock_df
 
-        # Act
         result = reader_transaction_excel('test_file.xlsx')
 
-        # Assert
         self.assertEqual(result.shape, mock_df.shape)
         self.assertTrue(all(result['transaction_id'] == mock_df['transaction_id']))
 

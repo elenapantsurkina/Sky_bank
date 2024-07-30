@@ -40,6 +40,9 @@ def reader_transaction_excel(file_path) -> pd.DataFrame:
         raise
 
 
+
+
+
 def get_dict_transaction(file_path) -> list[dict]:
     """Функция преобразовывающая датафрейм в словарь pyhton"""
     logger.info(f"Вызвана функция get_dict_transaction с файлом {file_path}")
