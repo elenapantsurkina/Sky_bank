@@ -28,10 +28,9 @@ def get_transactions_fizlicam(dict_transaction: list[dict], pattern):
         logger.info("Возвращен пустой список")
         return "[]"
 
-#
-# if __name__ == "__main__":
-#     list_transactions_fl_json = get_transactions_fizlicam(
-#         get_dict_transaction("..\\data\\operations.xlsx"), pattern=r"\b[А-Я][а-я]+\s[А-Я]\."
-#     )
-#
-#     print(list_transactions_fl_json)
+
+if __name__ == "__main__":
+    list_transactions_fl_json = get_transactions_fizlicam(
+        get_dict_transaction("..\\data\\operations.xlsx"), pattern=r"\b[А-Я][а-я]+\s[А-Я]\."
+    )
+    print(list_transactions_fl_json)

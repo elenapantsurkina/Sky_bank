@@ -27,3 +27,12 @@ def test_get_transactions_fizlicam_no_match(sample_dict_transaction):
     result = get_transactions_fizlicam(sample_dict_transaction, pattern)
     expected = json.dumps([])
     assert result == expected
+
+
+def test_get_transactions_fizlicam_empty_input():
+    """Проверка, паттерн корректный но нет данных"""
+    pattern = r"Константин Л."
+    expected_result = "[]"
+
+    result = get_transactions_fizlicam([], pattern)
+    assert result == expected_result
