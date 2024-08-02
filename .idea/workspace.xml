@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="тесты . покрытие 78%">
+    <list default="true" id="cdf11b33-6eff-4cc8-87e2-7d32cb2f437d" name="Changes" comment="отформатировано проверено flake8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reports.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/reports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +106,7 @@
       <recent name="C:\Users\User\Desktop\pythonProjecе1\Sky_bank\data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test_reports">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sky_bank" />
       <option name="ENV_FILES" value="" />
@@ -455,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722596327805</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="отформатировано проверено flake8">
+      <option name="closed" value="true" />
+      <created>1722597815042</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1722597815042</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -486,7 +491,8 @@
     <MESSAGE value="заполнен файл readme" />
     <MESSAGE value="формат даты поправила" />
     <MESSAGE value="тесты . покрытие 78%" />
-    <option name="LAST_COMMIT_MESSAGE" value="тесты . покрытие 78%" />
+    <MESSAGE value="отформатировано проверено flake8" />
+    <option name="LAST_COMMIT_MESSAGE" value="отформатировано проверено flake8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

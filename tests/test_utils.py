@@ -2,10 +2,10 @@ import pytest
 import datetime
 from pathlib import Path
 from src.config import file_path
-from src.utils import get_data, reader_transaction_excel, get_dict_transaction, get_user_setting
+from src.utils import get_data, reader_transaction_excel, get_dict_transaction, get_user_setting, get_currency_rates
 import unittest
+from unittest import mock
 import pandas as pd
-
 import json
 from unittest.mock import mock_open, patch
 
@@ -86,3 +86,59 @@ class TestGetUserSetting(unittest.TestCase):
     def test_get_user_setting_file_not_found(self, mock_open):
         with self.assertRaises(FileNotFoundError):
             get_user_setting("path/to/file.json")
+
+
+class TestGetCurrencyRates(unittest.TestCase):
+    @patch('src.utils.requests.get')
+    @patch('src.utils.os.environ.get')
+    def test_get_currency_rates_success(self, mock_get_env, mock_get):
+        # Настраиваем моки
+        mock_get_env.return_value = 'test_api_key'
+
+        # Пример ответа, который будет возвращен при вызове requests.get
+        mock_response = mock.Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "quotes": {
+                "USDRUB": 73.97,
+                "USDEUR": 0.84
+            }
+        }
+        mock_get.return_value = mock_response
+
+        # Тестируем функцию
+        currencies = ["RUB", "EUR"]
+        result = get_currency_rates(currencies)
+
+        # Проверяем результат
+        expected_result = [
+            {"currency": "USD", "rate": 73.97},
+            {"currency": "EUR", "rate": round(73.97 / 0.84, 2)},
+        ]
+        self.assertEqual(result, expected_result)
+        mock_get.assert_called_once_with(
+            "https://api.apilayer.com/currency_data/live?symbols=RUB,EUR",
+            headers={"apikey": 'test_api_key'}
+        )
+
+    @patch('src.utils.requests.get')
+    @patch('src.utils.os.environ.get')
+    def test_get_currency_rates_failure(self, mock_get_env, mock_get):
+        # Настраиваем моки
+        mock_get_env.return_value = 'test_api_key'
+
+        # Пример ответа при неуспешном запросе
+        mock_response = mock.Mock()
+        mock_response.status_code = 500
+        mock_response.reason = "Internal Server Error"
+        mock_get.return_value = mock_response
+
+        # Тестируем функцию
+        currencies = ["RUB", "EUR"]
+        result = get_currency_rates(currencies)
+
+        # Проверяем, что функция вернула None или вызвала какое-либо другое действие при неуспешном запросе
+        self.assertIsNone(result)  # предположим, что функция должна возвращать None в случае ошибки
+        mock_get.assert_called_once_with(
+            "https://api.apilayer.com/currency_data/live?symbols=RUB,EUR",
+            headers={"apikey": 'test_api_key'})
