@@ -1,17 +1,10 @@
-import datetime
-import json
-import logging
-import re
-from pathlib import Path
-
-import pandas as pd
-
-from src.api import get_currency_rates, get_stock_price
-from src.config import file_path
-from src.utils import reader_transaction_excel, get_user_setting
-from src.views import get_expenses_cards, get_greeting, top_transaction, transaction_currency
-
-ROOT_PATH = Path(__file__).resolve().parent.parent
+# import json
+# from pathlib import Path
+# from src.config import file_path
+# from src.utils import reader_transaction_excel, get_user_setting, get_currency_rates, get_stock_price
+# from src.views import get_expenses_cards, get_greeting, top_transaction, transaction_currency
+#
+# ROOT_PATH = Path(__file__).resolve().parent.parent
 #
 #
 # def main(df_transactions, date, user_currencies, user_stocks):
@@ -28,8 +21,8 @@ ROOT_PATH = Path(__file__).resolve().parent.parent
 #             "greeting": greeting,
 #             "cards": cards,
 #             "top_transactions": top_trans,
-#             # "currency_rates": currency_rates,
-#             # "stock_prices": stock_prices,
+#             "currency_rates": currency_rates,
+#             "stock_prices": stock_prices,
 #         },
 #         indent=4,
 #         ensure_ascii=False,

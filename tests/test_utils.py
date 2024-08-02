@@ -39,6 +39,7 @@ def test_reader_excel_file_not_found():
     with pytest.raises(FileNotFoundError):
         reader_transaction_excel("path/to/non-existent/file.xlsx")
 
+
 class TestReaderTransactionExcel(unittest.TestCase):
     @patch('pandas.read_excel')
     def test_successful_read(self, mock_read_excel):

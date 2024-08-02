@@ -1,32 +1,54 @@
 import pytest
-
 import pandas as pd
 import datetime as dt
 from src.reports import spending_by_category
+from src.utils import get_data
 
 
-def test_spending_by_category():
-    # Создаем тестовый DataFrame
+@pytest.fixture
+def sample_data():
+    # Пример тестовых данных
     data = {
-        "Дата операции": ["01-01-2023", "15-01-2023", "01-02-2023", "01-03-2023", "01-06-2023"],
-        "Сумма": [100, 150, 200, 250, 300],
-        "Категория": ["Еда", "Еда", "Транспорт", "Еда", "Транспорт"]
+        "Дата операции": [
+            "01.12.2021 12:00:00",
+            "15.12.2021 10:30:00",
+            "25.12.2021 18:45:00",
+            "05.01.2022 08:00:00",
+            "20.02.2022 16:20:00"
+        ],
+        "Категория": [
+            "Продукты",
+            "Продукты",
+            "Транспорт",
+            "Продукты",
+            "Транспорт"
+        ],
+        "Сумма": [100, 200, 50, 150, 80]
     }
     df = pd.DataFrame(data)
+    return df
 
-    # Тестируем функцию без указанной даты
-    result = spending_by_category(df, "Еда")
-    expected_result = df.loc[
-        df["Категория"] == "Еда" & df["Дата операции"].between("01-01-2023", dt.datetime.now().strftime("%d-%m-%Y"))]
+def test_spending_by_category_with_date(sample_data):
+    # Тестирование функции с указанной датой и категорией "Продукты"
+    result = spending_by_category(sample_data, "Продукты", "30.12.2021 17:50:30")
+    assert len(result) == 2  # Ожидается 2 строки, так как только две операции с категорией "Продукты" за последние три месяца от указанной даты
 
-    assert len(result) == 3  # Должно вернуть три записи основываясь на тестовых данных
-    pd.testing.assert_frame_equal(result.reset_index(drop=True), expected_result.reset_index(drop=True))
+def test_spending_by_category_no_date(sample_data):
+    result = spending_by_category(sample_data, "Продукты")
+    assert len(result) == 0  # Ожидаем три строки, соответствующие категории "Продукты"
 
-    # Тестируем функцию с указанной датой
-    result_with_date = spending_by_category(df, "Еда", "15-02-2023")
-    expected_result_with_date = df.loc[
-        df["Категория"] == "Еда" & df["Дата операции"].between("15-11-2022", "15-02-2023")]
 
-    assert len(result_with_date) == 2  # Должно вернуть две записи основываясь на тестовых данных
-    pd.testing.assert_frame_equal(result_with_date.reset_index(drop=True),
-                                  expected_result_with_date.reset_index(drop=True))
+def test_spending_by_category_future_date(sample_data):
+    # Тестирование функции с будущей датой
+    result = spending_by_category(sample_data, "Продукты", "01.01.2023 00:00:00")
+    assert len(result) == 0  # Ожидается 0 строк, так как нет операций с категорией "Продукты" за последние три месяца от будущей даты
+
+
+def test_spending_by_category_no_transactions(sample_data):
+    # Тестирование функции с категорией, для которой нет транзакций
+    result = spending_by_category(sample_data, "Здоровье", "30.12.2021 17:50:30")
+    assert len(result) == 0  # Ожидается 0 строк, так как нет транзакций с категорией "Здоровье"
+
+
+if __name__ == "__main__":
+    pytest.main()

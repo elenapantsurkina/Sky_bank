@@ -40,7 +40,6 @@ def top_transaction(df_transactions):
     for transaction in result_top_transaction:
         top_transaction_list.append(
             {
-                #"date": transaction["Дата операции"],
                 "date": str((datetime.strptime(transaction["Дата операции"], "%d.%m.%Y %H:%M:%S")).date().strftime("%d.%m.%Y")).replace('-', '.'),
                 "amount": transaction["Сумма платежа"],
                 "category": transaction["Категория"],
