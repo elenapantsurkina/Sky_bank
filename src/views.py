@@ -1,4 +1,5 @@
 import datetime as dt
+from datetime import datetime
 import logging
 from pathlib import Path
 import pandas as pd
@@ -39,7 +40,8 @@ def top_transaction(df_transactions):
     for transaction in result_top_transaction:
         top_transaction_list.append(
             {
-                "date": transaction["Дата операции"],
+                #"date": transaction["Дата операции"],
+                "date": str((datetime.strptime(transaction["Дата операции"], "%d.%m.%Y %H:%M:%S")).date().strftime("%d.%m.%Y")).replace('-', '.'),
                 "amount": transaction["Сумма платежа"],
                 "category": transaction["Категория"],
                 "description": transaction["Описание"],
@@ -100,9 +102,9 @@ def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFra
 
     return transaction_currency
 
-#
-# if __name__ == "__main__":
-#     transaction_currency = transaction_currency(
-#         reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
-#     )
-#     print(transaction_currency)
+
+if __name__ == "__main__":
+    transaction_currency = transaction_currency(
+        reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
+    )
+    print(transaction_currency)

@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["elena_pantsurkina <pantsurkina.e@bk.ru>"]
 readme = "README.md"
+virtualenvs.in-project = false
 
 [tool.poetry.dependencies]
 python = "^3.12"

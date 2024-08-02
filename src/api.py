@@ -6,14 +6,13 @@ from dotenv import load_dotenv
 load_dotenv("..\\.env")
 
 
-
 def get_currency_rates(currencies):
     """функция, возвращает курсы"""
     API_KEY = os.environ.get("API_KEY")
     symbols = ",".join(currencies)
     url = f"https://api.apilayer.com/currency_data/live?symbols={symbols}"
 
-    headers = {"apikey": 'API_KEY'}
+    headers = {"apikey": API_KEY}
     response = requests.get(url, headers=headers)
     status_code = response.status_code
     if status_code != 200:
@@ -36,7 +35,6 @@ def get_stock_price(stocks):
     """Функция, возвращающая курсы акций"""
     API_KEY_STOCK = os.environ.get("API_KEY_STOCK")
     stock_price = []
-
     for stock in stocks:
         url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={stock}&apikey={API_KEY_STOCK}"
         response = requests.get(url)
@@ -52,7 +50,6 @@ def get_stock_price(stocks):
 if __name__ == "__main__":
     print(get_currency_rates(["USD", "EUR"]))
 
-    # stock = "AAPL"
-    # stock_price = get_stock_price(["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"])
-    # API_KEY_STOCK = "1LEAU1JX6KFZ65TN"
-    # stock = "AAPL"
+    stock = "AAPL"
+    stock_price = get_stock_price(["AAPL", "AMZN", "GOOGL", "MSFT", "TSLA"])
+    API_KEY_STOCK = "1LEAU1JX6KFZ65TN"
