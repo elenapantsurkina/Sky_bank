@@ -1,6 +1,5 @@
 import datetime
 import datetime as dt
-import json
 import logging
 from pathlib import Path
 import pandas as pd
@@ -22,6 +21,7 @@ ROOT_PATH = Path(__file__).resolve().parent.parent
 
 def log(filename: Any = None) -> Callable:
     """декоратор,который логирует вызов функции и ее результат в файл или в консоль"""
+
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -37,7 +37,9 @@ def log(filename: Any = None) -> Callable:
             else:
                 print(log_messege)
             return result
+
         return wrapper
+
     return decorator
 
 
@@ -55,7 +57,8 @@ def spending_by_category(df_transactions: pd.DataFrame, category: str, date: [st
     ]
     return transactions_by_category
 
-#
-# if __name__ == "__main__":
-#     result = spending_by_category(reader_transaction_excel(str(ROOT_PATH) + file_path), "Аптеки", "26.07.2019 20:58:55")
-#     print(result)
+
+if __name__ == "__main__":
+    result = spending_by_category(reader_transaction_excel(str(ROOT_PATH) + file_path), "Аптеки",
+                                  "26.07.2019 20:58:55")
+    print(result)

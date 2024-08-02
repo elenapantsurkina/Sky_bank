@@ -40,7 +40,9 @@ def top_transaction(df_transactions):
     for transaction in result_top_transaction:
         top_transaction_list.append(
             {
-                "date": str((datetime.strptime(transaction["Дата операции"], "%d.%m.%Y %H:%M:%S")).date().strftime("%d.%m.%Y")).replace('-', '.'),
+                "date": str(
+                    (datetime.strptime(transaction["Дата операции"], "%d.%m.%Y %H:%M:%S")).date().strftime("%d.%m.%Y")
+                ).replace("-", "."),
                 "amount": transaction["Сумма платежа"],
                 "category": transaction["Категория"],
                 "description": transaction["Описание"],
@@ -96,7 +98,7 @@ def transaction_currency(df_transactions: pd.DataFrame, data: str) -> pd.DataFra
     transaction_currency = df_transactions.loc[
         (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) <= fin_data)
         & (pd.to_datetime(df_transactions["Дата операции"], dayfirst=True) >= start_data)
-        ]
+    ]
     logger.info(f"Получен DataFrame transaction_currency: {transaction_currency}")
 
     return transaction_currency
