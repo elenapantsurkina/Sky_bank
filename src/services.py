@@ -1,7 +1,5 @@
 import json
 import logging
-
-
 import pytest
 import re
 from src.utils import get_dict_transaction

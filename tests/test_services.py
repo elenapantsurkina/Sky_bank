@@ -14,10 +14,12 @@ def sample_dict_transaction():
 def test_get_transactions_fizlicam_success(sample_dict_transaction):
     pattern = r"Константин Л."
     result = get_transactions_fizlicam(sample_dict_transaction, pattern)
-    expected = json.dumps([
-        {"Описание": "Константин Л."},
-
-    ], ensure_ascii=False)
+    expected = json.dumps(
+        [
+            {"Описание": "Константин Л."},
+        ],
+        ensure_ascii=False,
+    )
     assert result == expected
 
 
@@ -38,8 +40,10 @@ def test_get_transactions_fizlicam_empty_input():
     assert result == expected_result
 
 
-@pytest.mark.parametrize("dict_transaction, pattern, expected_output", [
-    (
+@pytest.mark.parametrize(
+    "dict_transaction, pattern, expected_output",
+    [
+        (
             [
                 {"Описание": "Перевод физлицу"},
                 {"Описание": "Оплата услуги"},
@@ -51,18 +55,18 @@ def test_get_transactions_fizlicam_empty_input():
                     {"Описание": "Перевод физлицу"},
                     {"Описание": "Перевод физлицу на сумму 1000"},
                 ],
-                ensure_ascii=False
-            )
-    ),
-    (
+                ensure_ascii=False,
+            ),
+        ),
+        (
             [
                 {"Описание": "Оплата кредита"},
                 {"Описание": "Оплата услуги"},
             ],
             r"Перевод физлицу",
-            "[]"
-    ),
-    (
+            "[]",
+        ),
+        (
             [
                 {"Описание": "Перевод физлицу"},
                 {"Описание": "Перевод физлицу"},
@@ -73,13 +77,13 @@ def test_get_transactions_fizlicam_empty_input():
                     {"Описание": "Перевод физлицу"},
                     {"Описание": "Перевод физлицу"},
                 ],
-                ensure_ascii=False
-            )
-    ),
-])
-def test_get_transactions_fizlicam(dict_transaction, pattern, expected_output, mocker):
-    # Здесь мы можем использовать mock для логирования, если это необходимо
-    mocker.patch('services.logger.info')  # замените your_module на название вашего модуля
+                ensure_ascii=False,
+            ),
+        ),
+    ],
+)
+def test_get_transactions_fizlicam(dict_transaction, pattern, expected_output):
+
     result = get_transactions_fizlicam(dict_transaction, pattern)
 
     assert result == expected_output

@@ -1,6 +1,5 @@
 import datetime
 import datetime as dt
-
 import json
 import logging
 from pathlib import Path
@@ -142,7 +141,9 @@ def top_transaction(df_transactions):
         top_transaction_list.append(
             {
                 "date": str(
-                    (datetime.datetime.strptime(transaction["Дата операции"], "%d.%m.%Y %H:%M:%S")).date().strftime("%d.%m.%Y")
+                    (datetime.datetime.strptime(transaction["Дата операции"], "%d.%m.%Y %H:%M:%S"))
+                    .date()
+                    .strftime("%d.%m.%Y")
                 ).replace("-", "."),
                 "amount": transaction["Сумма платежа"],
                 "category": transaction["Категория"],
@@ -210,6 +211,7 @@ if __name__ == "__main__":
         reader_transaction_excel((str(ROOT_PATH) + file_path)), "29.07.2019 22:06:27"
     )
     print(transaction_currency)
+
 
 def get_greeting():
     """Функция- приветствие"""
