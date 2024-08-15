@@ -36,3 +36,50 @@ def test_get_transactions_fizlicam_empty_input():
 
     result = get_transactions_fizlicam([], pattern)
     assert result == expected_result
+
+
+@pytest.mark.parametrize("dict_transaction, pattern, expected_output", [
+    (
+            [
+                {"Описание": "Перевод физлицу"},
+                {"Описание": "Оплата услуги"},
+                {"Описание": "Перевод физлицу на сумму 1000"},
+            ],
+            r"Перевод физлицу",
+            json.dumps(
+                [
+                    {"Описание": "Перевод физлицу"},
+                    {"Описание": "Перевод физлицу на сумму 1000"},
+                ],
+                ensure_ascii=False
+            )
+    ),
+    (
+            [
+                {"Описание": "Оплата кредита"},
+                {"Описание": "Оплата услуги"},
+            ],
+            r"Перевод физлицу",
+            "[]"
+    ),
+    (
+            [
+                {"Описание": "Перевод физлицу"},
+                {"Описание": "Перевод физлицу"},
+            ],
+            r"Перевод физлицу",
+            json.dumps(
+                [
+                    {"Описание": "Перевод физлицу"},
+                    {"Описание": "Перевод физлицу"},
+                ],
+                ensure_ascii=False
+            )
+    ),
+])
+def test_get_transactions_fizlicam(dict_transaction, pattern, expected_output, mocker):
+    # Здесь мы можем использовать mock для логирования, если это необходимо
+    mocker.patch('services.logger.info')  # замените your_module на название вашего модуля
+    result = get_transactions_fizlicam(dict_transaction, pattern)
+
+    assert result == expected_output
