@@ -1,8 +1,20 @@
 import pytest
 import datetime
+import datetime as dt
 from pathlib import Path
+
 from src.config import file_path
-from src.utils import get_data, reader_transaction_excel, get_dict_transaction, get_user_setting, get_currency_rates
+from src.utils import (
+    get_data,
+    reader_transaction_excel,
+    get_dict_transaction,
+    get_user_setting,
+    get_currency_rates,
+    get_greeting,
+    get_expenses_cards,
+    top_transaction,
+    transaction_currency,
+)
 import unittest
 from unittest import mock
 import pandas as pd
@@ -41,16 +53,16 @@ def test_reader_excel_file_not_found():
 
 
 class TestReaderTransactionExcel(unittest.TestCase):
-    @patch('pandas.read_excel')
+    @patch("pandas.read_excel")
     def test_successful_read(self, mock_read_excel):
         # Arrange
-        mock_df = pd.DataFrame({'transaction_id': [1, 2, 3]})
+        mock_df = pd.DataFrame({"transaction_id": [1, 2, 3]})
         mock_read_excel.return_value = mock_df
 
-        result = reader_transaction_excel('test_file.xlsx')
+        result = reader_transaction_excel("test_file.xlsx")
 
         self.assertEqual(result.shape, mock_df.shape)
-        self.assertTrue(all(result['transaction_id'] == mock_df['transaction_id']))
+        self.assertTrue(all(result["transaction_id"] == mock_df["transaction_id"]))
 
 
 def test_get_dict_transaction_file_not_found():
@@ -60,23 +72,33 @@ def test_get_dict_transaction_file_not_found():
 
 
 class TestGetUserSetting(unittest.TestCase):
-    @patch("builtins.open", mock_open(read_data='''
+    @patch(
+        "builtins.open",
+        mock_open(
+            read_data="""
     {
         "user_currencies": ["USD", "EUR"],
         "user_stocks": ["AAPL", "AMZN"]
     }
-    '''))
+    """
+        ),
+    )
     def test_get_user_setting(self):
         user_currencies, user_stocks = get_user_setting("path/to/file.json")
         self.assertEqual(user_currencies, ["USD", "EUR"])
         self.assertEqual(user_stocks, ["AAPL", "AMZN"])
 
-    @patch("builtins.open", mock_open(read_data='''
+    @patch(
+        "builtins.open",
+        mock_open(
+            read_data="""
     {
         "user_currencies": [],
         "user_stocks": []
     }
-    '''))
+    """
+        ),
+    )
     def test_get_user_setting_empty(self):
         user_currencies, user_stocks = get_user_setting("path/to/file.json")
         self.assertEqual(user_currencies, [])
@@ -89,21 +111,16 @@ class TestGetUserSetting(unittest.TestCase):
 
 
 class TestGetCurrencyRates(unittest.TestCase):
-    @patch('src.utils.requests.get')
-    @patch('src.utils.os.environ.get')
+    @patch("src.utils.requests.get")
+    @patch("src.utils.os.environ.get")
     def test_get_currency_rates_success(self, mock_get_env, mock_get):
         # Настраиваем моки
-        mock_get_env.return_value = 'test_api_key'
+        mock_get_env.return_value = "test_api_key"
 
         # Пример ответа, который будет возвращен при вызове requests.get
         mock_response = mock.Mock()
         mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "quotes": {
-                "USDRUB": 73.97,
-                "USDEUR": 0.84
-            }
-        }
+        mock_response.json.return_value = {"quotes": {"USDRUB": 73.97, "USDEUR": 0.84}}
         mock_get.return_value = mock_response
 
         # Тестируем функцию
@@ -117,15 +134,14 @@ class TestGetCurrencyRates(unittest.TestCase):
         ]
         self.assertEqual(result, expected_result)
         mock_get.assert_called_once_with(
-            "https://api.apilayer.com/currency_data/live?symbols=RUB,EUR",
-            headers={"apikey": 'test_api_key'}
+            "https://api.apilayer.com/currency_data/live?symbols=RUB,EUR", headers={"apikey": "test_api_key"}
         )
 
-    @patch('src.utils.requests.get')
-    @patch('src.utils.os.environ.get')
+    @patch("src.utils.requests.get")
+    @patch("src.utils.os.environ.get")
     def test_get_currency_rates_failure(self, mock_get_env, mock_get):
         # Настраиваем моки
-        mock_get_env.return_value = 'test_api_key'
+        mock_get_env.return_value = "test_api_key"
 
         # Пример ответа при неуспешном запросе
         mock_response = mock.Mock()
@@ -140,5 +156,45 @@ class TestGetCurrencyRates(unittest.TestCase):
         # Проверяем, что функция вернула None или вызвала какое-либо другое действие при неуспешном запросе
         self.assertIsNone(result)  # предположим, что функция должна возвращать None в случае ошибки
         mock_get.assert_called_once_with(
-            "https://api.apilayer.com/currency_data/live?symbols=RUB,EUR",
-            headers={"apikey": 'test_api_key'})
+            "https://api.apilayer.com/currency_data/live?symbols=RUB,EUR", headers={"apikey": "test_api_key"}
+        )
+
+
+def test_get_greeting_morning():
+    with pytest.raises(TypeError):
+        with patch("datetime.datetime.now") as mock_now:
+            mock_now.return_value = dt.datetime(2023, 4, 1, 8, 0, 0)
+            assert get_greeting() == "Доброе утро"
+
+
+def test_get_greeting_afternoon():
+    with pytest.raises(TypeError):
+        with patch("datetime.datetime.now") as mock_now:
+            mock_now.return_value = dt.datetime(2023, 4, 1, 14, 0, 0)
+            assert get_greeting() == "Добрый день"
+
+
+def test_get_greeting_evening():
+    with pytest.raises(TypeError):
+        with patch("datetime.datetime.now") as mock_now:
+            mock_now.return_value = dt.datetime(2023, 4, 1, 19, 0, 0)
+            assert get_greeting() == "Добрый вечер"
+
+
+def test_get_greeting_night():
+    with pytest.raises(TypeError):
+        with patch("datetime.datetime.now") as mock_now:
+            mock_now.return_value = dt.datetime(2023, 4, 1, 23, 0, 0)
+            assert get_greeting() == "Доброй ночи"
+
+
+@pytest.fixture
+def sample_transactions():
+    return pd.DataFrame({"Номер карты": ["*1112", "*5091"], "Сумма платежа": [-100, -200]})
+
+
+def test_get_expenses_cards(sample_transactions):
+    result = get_expenses_cards(sample_transactions)
+
+    assert result[0] == {"last_digits": "*1112", "total spent": 100, "cashback": 1.0}
+    assert result[1] == {"last_digits": "*5091", "total spent": 200, "cashback": 2.0}
